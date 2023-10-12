@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
-    <Grid>
+        Title="Tabella" Height="500" Width="800">
+    <Grid Background="Red">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Tabella" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
+
+        <DataGrid Grid.Row="1" Margin="15"/>
+
+
+        <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
+            <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Név:"/>
+                <TextBox/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Lógó:"></Label>
+                
+            </StackPanel>
+        </StackPanel>
+
 
     </Grid>
 </Window>
