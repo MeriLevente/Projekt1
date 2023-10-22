@@ -29,5 +29,15 @@ namespace Projekt1
             this.DataContext = megoldas;
         }
 
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            megoldas.makeNewMatch("aa", "2", "dasd", "2");
+            data.Items.Refresh();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            megoldas.runOnClose();
+        }
     }
 }

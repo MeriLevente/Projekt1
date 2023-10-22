@@ -50,8 +50,7 @@ namespace Projekt1
             var client = new HttpClient();
             var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/send.php" + "?" + datas;
 
-            var body = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
-            Console.WriteLine(body);
+            var body = "{}";
             var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
                 Content = new StringContent(body)

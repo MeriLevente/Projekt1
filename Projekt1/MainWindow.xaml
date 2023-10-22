@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
-        Title="Tabella" Height="500" Width="800">
+        Title="Tabella" Height="500" Width="800"
+        Closing="Window_Closing">
     <Grid Background="Red">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,7 +20,7 @@
         
         <Label Content="Tabella" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
 
-        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding teams}"/>
+        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding teams}" x:Name="data"/>
 
 
         <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
@@ -32,6 +33,7 @@
                 <Label Content="Lógó:"></Label>
                 
             </StackPanel>
+            <Button Height="30" Click="Button_Click"></Button>
         </StackPanel>
 
 

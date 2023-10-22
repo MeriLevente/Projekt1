@@ -8,17 +8,25 @@ namespace Projekt1
 {
     public class Team
     {
-        public string id { get; set; }
-        public string name { get; set; }
-        public string point { get; set; }
-        public string matches { get; set; }
+        public string home { get; set; }
+        public string homeGoal { get; set; }
+        public string away { get; set; }
+        public string awayGoal { get; set; }
 
         public Team(dynamic Line)
         {
-            id = Line.id;
-            name = Line.name;
-            point = Line.point;
-            matches = Line.matches;
+            home = Line.home;
+            homeGoal =Line.homeGoal;
+            away = Line.away;
+            awayGoal = Line.awayGoal;
+        }
+
+        public Team(string home, string homeGoal, string away, string awayGoal)
+        {
+            this.home = home;
+            this.homeGoal = homeGoal;
+            this.away = away;
+            this.awayGoal = awayGoal;
         }
     }
 }
