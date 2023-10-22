@@ -8,54 +8,64 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Json;
 using System.Windows.Media.Animation;
+using Newtonsoft.Json;
 
 namespace Projekt1
 {
     class API
     {
-        public async static  Task<String> GetAPI()
+        public static async Task<List<Team>> getTeamsFromAPI()
         {
             var client = new HttpClient();
 
-            // specify the API endpoint you want to call
             var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/api.php";
 
-            // create a dictionary to hold the request headers
-            var headers = new Dictionary<string, string>();
+            var body = "{}";
 
-            // add the headers to the dictionary
-            headers.Add("header1", "value1");
-            headers.Add("header2", "value2");
-
-            // create the request body as a string
-            var body = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
-            Console.WriteLine(body);
-            // create a new HttpRequestMessage object with the specified method, url, and body
             var request = new HttpRequestMessage(HttpMethod.Post, url)
             {
                 Content = new StringContent(body)
             };
             Console.WriteLine(request);
 
-            // add the headers to the request
-            foreach (var header in headers)
-            {
-                request.Headers.Add(header.Key, header.Value);
-            }
-
-            // make the API call using the SendAsync method of the HttpClient
             var response = await client.SendAsync(request);
+            List<Team> teams = new List<Team>();
 
-            // check the status code of the response to make sure the call was successful
             if (response.IsSuccessStatusCode)
             {
-                // if the call was successful, read the response content
-                var content = await response.Content.ReadAsStringAsync();
-                return content;
-                // do something with the response content
-                // ...
+                string content = await response.Content.ReadAsStringAsync();
+
+                dynamic jsonObj = JsonConvert.DeserializeObject(content);
+                foreach (var item in jsonObj)
+                {
+                    teams.Add(new Team(item));
+                }
+                return teams;
             }
             return null;
         }
+
+        public static async Task<string?> sendTeamChangeAPI(string datas)
+        {
+            var client = new HttpClient();
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/send.php" + "?" + datas;
+
+            var body = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
+            Console.WriteLine(body);
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(body)
+            };
+            Console.WriteLine(request);
+
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return content;
+            }
+            return null;
+        }
+
     }
 }

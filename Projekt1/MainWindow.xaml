@@ -19,11 +19,11 @@
         
         <Label Content="Tabella" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
 
-        <DataGrid Grid.Row="1" Margin="15"/>
+        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding teams}"/>
 
 
         <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
-            <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold"/>
+            <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold" x:Name="test"/>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Név:"/>
                 <TextBox/>

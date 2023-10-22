@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +22,12 @@ namespace Projekt1
     /// </summary>
     public partial class MainWindow : Window
     {
+        megold megoldas = new megold();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = megoldas;
         }
+
     }
 }

@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 
 namespace Projekt1
 {
-    class Team
+    public class Team
     {
         public string id { get; set; }
         public string name { get; set; }
         public string point { get; set; }
-        public string games { get; set; }
+        public string matches { get; set; }
 
-        public Team(string Line)
+        public Team(dynamic Line)
         {
-            Line.Split();
+            id = Line.id;
+            name = Line.name;
+            point = Line.point;
+            matches = Line.matches;
         }
     }
 }
