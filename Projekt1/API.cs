@@ -18,7 +18,7 @@ namespace Projekt1
         {
             var client = new HttpClient();
 
-            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/api.php";
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/get.php";
 
             var body = "{}";
 

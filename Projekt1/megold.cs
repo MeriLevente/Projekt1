@@ -11,12 +11,13 @@ namespace Projekt1
     {
         public List<Team> teams { get; set; }
         public List<Team> newTeams { get; set; }
-
+        private int matchCount;
         public megold()
         {
             teams = new List<Team>();
             newTeams = new List<Team>();
             callAPI();
+            
         }
         public async Task callAPI()
         {
@@ -27,16 +28,21 @@ namespace Projekt1
 
         public void makeNewMatch(string home, string homeGoal, string away, string awayGoal)
         {
-            teams.Add(new Team(home, homeGoal, away, awayGoal));
-            newTeams.Add(new Team(home, homeGoal, away, awayGoal));
-
+            if (matchCount == 0)
+            {
+                matchCount = teams.Count;
+            }
+            string id = matchCount.ToString();
+            matchCount++;
+            teams.Add(new Team(id, home, homeGoal, away, awayGoal));
+            newTeams.Add(new Team(id, home, homeGoal, away, awayGoal));
         }
 
         public void runOnClose()
         {
             foreach (Team team in newTeams)
             {
-                _ = sendAPI($"{team.home};{team.homeGoal};{team.away};{team.awayGoal}");
+                _ = sendAPI($"{team.id};{team.home};{team.homeGoal};{team.away};{team.awayGoal}");
             }
         }
 
@@ -46,10 +52,6 @@ namespace Projekt1
             if (ret == "Failed")
             {
                 MessageBox.Show("Hiba az API hívásban", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else
-            {
-                MessageBox.Show("Nem Hiba az API hívásban", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
