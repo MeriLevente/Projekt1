@@ -14,7 +14,7 @@ namespace Projekt1
 {
     class API
     {
-        public static async Task<List<Match>> getTeamsFromAPI()
+        public static async Task<List<Match>> getMatchesFromAPI()
         {
             var client = new HttpClient();
 
@@ -44,6 +44,40 @@ namespace Projekt1
             }
             return null;
         }
+
+
+
+        public static async Task<List<Team>> getTeamsFromAPI()
+        {
+            var client = new HttpClient();
+
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/getTeams.php";
+
+            var body = "{}";
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(body)
+            };
+            Console.WriteLine(request);
+
+            var response = await client.SendAsync(request);
+            List<Team> teams = new List<Team>();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                dynamic jsonObj = JsonConvert.DeserializeObject(content);
+                foreach (var item in jsonObj)
+                {
+                    teams.Add(new Team(item));
+                }
+                return teams;
+            }
+            return null;
+        }
+
 
         public static async Task<string?> sendTeamChangeAPI(string datas)
         {

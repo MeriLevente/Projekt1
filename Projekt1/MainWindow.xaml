@@ -20,7 +20,7 @@
         
         <Label Content="Tabella" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
 
-        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding matches}" x:Name="data"/>
+        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding teams}" x:Name="data"/>
 
 
         <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
