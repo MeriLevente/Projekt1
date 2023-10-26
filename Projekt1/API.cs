@@ -14,7 +14,7 @@ namespace Projekt1
 {
     class API
     {
-        public static async Task<List<Team>> getTeamsFromAPI()
+        public static async Task<List<Match>> getTeamsFromAPI()
         {
             var client = new HttpClient();
 
@@ -29,7 +29,7 @@ namespace Projekt1
             Console.WriteLine(request);
 
             var response = await client.SendAsync(request);
-            List<Team> teams = new List<Team>();
+            List<Match> matches = new List<Match>();
 
             if (response.IsSuccessStatusCode)
             {
@@ -38,9 +38,9 @@ namespace Projekt1
                 dynamic jsonObj = JsonConvert.DeserializeObject(content);
                 foreach (var item in jsonObj)
                 {
-                    teams.Add(new Team(item));
+                    matches.Add(new Match(item));
                 }
-                return teams;
+                return matches;
             }
             return null;
         }

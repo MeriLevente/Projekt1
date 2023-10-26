@@ -9,38 +9,46 @@ namespace Projekt1
 {
     public class megold
     {
+        public List<Match> matches { get; set; }
+        public List<Match> newMatches { get; set; }
         public List<Team> teams { get; set; }
-        public List<Team> newTeams { get; set; }
+
         private int matchCount;
         public megold()
         {
+            matches = new List<Match>();
+            newMatches = new List<Match>();
             teams = new List<Team>();
-            newTeams = new List<Team>();
+
             callAPI();
             
         }
         public async Task callAPI()
         {
-            List<Team> ret = await API.getTeamsFromAPI();
-            teams = ret;
+            List<Match> ret = await API.getTeamsFromAPI();
+            matches = ret;
         }
 
+        public void  getTeames()
+        {
+
+        }
 
         public void makeNewMatch(string home, string homeGoal, string away, string awayGoal)
         {
             if (matchCount == 0)
             {
-                matchCount = teams.Count;
+                matchCount = matches.Count;
             }
             string id = matchCount.ToString();
             matchCount++;
-            teams.Add(new Team(id, home, homeGoal, away, awayGoal));
-            newTeams.Add(new Team(id, home, homeGoal, away, awayGoal));
+            matches.Add(new Match(id, home, homeGoal, away, awayGoal));
+            newMatches.Add(new Match(id, home, homeGoal, away, awayGoal));
         }
 
         public void runOnClose()
         {
-            foreach (Team team in newTeams)
+            foreach (Match team in newMatches)
             {
                 _ = sendAPI($"{team.id};{team.home};{team.homeGoal};{team.away};{team.awayGoal}");
             }
