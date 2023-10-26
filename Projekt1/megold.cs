@@ -31,7 +31,17 @@ namespace Projekt1
 
         public void  getTeames()
         {
-
+            foreach (var team in teams)
+            {
+                List<Match> filtered = (List<Match>)matches.Where(x => x.home == team.name);
+                team.games += filtered.Count;
+                foreach (var match in filtered)
+                {
+                    
+                    team.point += (int.Parse(match.homeGoal) > int.Parse(match.homeGoal) ? 3 : (int.Parse(match.homeGoal) == int.Parse(match.homeGoal)) ? 1 : 0);
+                    
+                }
+            }
         }
 
         public void makeNewMatch(string home, string homeGoal, string away, string awayGoal)
