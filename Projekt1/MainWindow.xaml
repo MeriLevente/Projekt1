@@ -28,11 +28,31 @@
         <StackPanel Grid.Row="1">
             <DataGrid Grid.Row="1" Margin="10" AutoGenerateColumns="False" x:Name="data" IsReadOnly="True" ItemsSource="{Binding teams}" Height="350">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Csapat" Width="5*" Binding="{Binding name}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="LM" Width="*" Binding="{Binding games}"/>
-                    <DataGridTextColumn Header="LG" Width="*" Binding="{Binding goalsScored}"/>
-                    <DataGridTextColumn Header="KG" Width="*" Binding="{Binding goalsConceided}"/>
-                    <DataGridTextColumn Header="Pontok" Width="1.2*" Binding="{Binding point}"/>
+                    <DataGridTextColumn  Width="5*" Binding="{Binding name}" IsReadOnly="True">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Csapat"/>
+                        </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                 <DataGridTextColumn  Width="*" Binding="{Binding games}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="LM" ToolTip="Lejátszott meccsek száma"/>
+                        </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding goalsScored}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="LG" ToolTip="Lőtt gólok száma"/>
+                        </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding goalsConceided}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="KG" ToolTip="Kapott gólok száma"/>
+                        </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="1.2*" Binding="{Binding point}">
+                        <DataGridTextColumn.Header>
+                            <TextBlock Text="Pontok"/>
+                        </DataGridTextColumn.Header>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzmények" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
@@ -85,7 +105,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <ComboBox x:Name="hazaiNev" Width="120" Height="30" SelectionChanged="hazaiNev_SelectionChanged" ItemsSource="{Binding}" IsEnabled="False"/>
 
-                <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
+                <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="RogzitBtn_Click"/>
 
                 <ComboBox x:Name="vendegNev" Width="120" Height="30" Margin="20,0,0,0" SelectionChanged="vendegNev_SelectionChanged" ItemsSource="{Binding}" IsEnabled="False"/>
             </StackPanel>

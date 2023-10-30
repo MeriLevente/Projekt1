@@ -65,21 +65,29 @@ namespace Projekt1
             string name = CsapatNevTb.Text.ToString();
             if (!String.IsNullOrEmpty(name))
             {
-                if (logoS.Content != "")
+                if (!teamNames.Contains(name))
                 {
-                    string logoSource = logoS.Content.ToString();
-                    Team newTeam = new Team($"{id}", name, 0, 0, 0,0, logoSource);
-                    megoldas.teams.Add(newTeam);
-                    teamNames.Add(name);
-                    FillComboBoxesWithTeamNames();
-                    logoS.Content = "";
-                    id++;
-                    validLogoImg.Visibility = Visibility.Hidden;
-                    data.Items.Refresh();
+                    if (logoS.Content != "")
+                    {
+                        //csapat felvétele a datagridbe
+                        string logoSource = logoS.Content.ToString();
+                        Team newTeam = new Team($"{id}", name, 0, 0, 0, 0, logoSource);
+                        megoldas.teams.Add(newTeam);
+                        teamNames.Add(name);
+                        FillComboBoxesWithTeamNames();
+                        logoS.Content = "";
+                        id++;
+                        validLogoImg.Visibility = Visibility.Hidden;
+                        data.Items.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kérem adjon meg a csapat lógóját!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Kérem adjon meg a csapat lógóját!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                    MessageBox.Show("Ilyen néven már létezik egy csapat!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
@@ -131,6 +139,23 @@ namespace Projekt1
                         vendegLogo.Source = new BitmapImage(new Uri(x.logoSource));
                     }
                 });
+            }
+        }
+
+        private void RogzitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
+            {
+                if(vendegNev.SelectedItem != hazaiNev.SelectedItem)
+                {
+                    //meccseredmény rögzítése ITT
+                    hazaiGolok.Text = "";
+                    vendegGolok.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Egy csapat önmagával nem játszhat!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }
