@@ -33,7 +33,7 @@
                 <Label Content="Lógó:"></Label>
                 
             </StackPanel>
-            <Button Height="30" Click="Button_Click"></Button>
+            <Button Height="30" Click="Button_Click">Add test match</Button>
         </StackPanel>
 
 

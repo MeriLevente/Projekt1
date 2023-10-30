@@ -31,8 +31,8 @@ namespace Projekt1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //megoldas.makeNewMatch("aa", "2", "dasd", "2");
-            data.Items.Refresh();
+            megoldas.makeNewMatch("Eto", "2", "Ferencváros", "4");
+            //data.Items.Refresh();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
