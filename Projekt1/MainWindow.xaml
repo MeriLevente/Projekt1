@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
         Title="Tabella" Height="500" Width="800"
-        Closing="Window_Closing">
-    <Grid Background="Red">
+        Closing="Window_Closing" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/red.jpg"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="8*"/>
@@ -20,22 +23,72 @@
         
         <Label Content="Tabella" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
 
-        <DataGrid Grid.Row="1" Margin="15" ItemsSource="{Binding teams}" x:Name="data"/>
+        <Line X1="100" Y1="50" X2="700" Y2="50" Stroke="White" StrokeThickness="4" Grid.ColumnSpan="2"/>
 
-
-        <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
-            <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold" x:Name="test"/>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Név:"/>
-                <TextBox/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Lógó:"></Label>
-                
-            </StackPanel>
-            <Button Height="30" Click="Button_Click">Add test match</Button>
+        <StackPanel Grid.Row="1">
+            <DataGrid Grid.Row="1" Margin="10" AutoGenerateColumns="False" x:Name="data" IsReadOnly="True" ItemsSource="{Binding teams}" Height="350">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Csapat" Width="5*" Binding="{Binding name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="LM" Width="*" Binding="{Binding games}"/>
+                    <DataGridTextColumn Header="LG" Width="*" Binding="{Binding goalsScored}"/>
+                    <DataGridTextColumn Header="KG" Width="*" Binding="{Binding goalsConceided}"/>
+                    <DataGridTextColumn Header="Pontok" Width="1.2*" Binding="{Binding point}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzmények" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
         </StackPanel>
 
 
+
+        <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
+            <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold"/>
+            <Line X1="000" Y1="0" X2="280" Y2="0" Stroke="White" StrokeThickness="4" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Content="Név:" FontWeight="Bold" FontSize="13" Foreground="White" Width="50"/>
+                <TextBox x:Name="CsapatNevTb" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Lógó:" Width="50" FontWeight="Bold" FontSize="13" Foreground="White"></Label>
+                <Button Width="100" x:Name="logoBtn" Click="logoBtn_Click" Content="Fájl kiválasztása"/>
+                <Image x:Name="validLogoImg" Width="20" Visibility="Hidden">
+                    <Image.Source>
+                        <BitmapImage UriSource="img/greentick.png"/>
+                    </Image.Source>
+                </Image>
+                <Label x:Name="logoS" Visibility="Hidden" Content=""/>
+            </StackPanel>
+
+            <Button x:Name="Mentés" Content="Mentés" Width="100" Height="25" Margin="20" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="Mentés_Click"/>
+        
+        <Label Content="Meccs eredmény rögzítése:" FontSize="16" Foreground="White" FontWeight="Bold"/>
+            <Line X1="000" Y1="0" X2="280" Y2="0" Stroke="White" StrokeThickness="4" Margin="0,0,0,10"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Image x:Name="hazaiLogo" Height="100" Width="100">
+                    <Image.Source>
+                        <BitmapImage UriSource="img\HT.png"/>
+                    </Image.Source>
+                </Image>
+
+                <TextBox x:Name="hazaiGolok" Width="30" Height="30" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Line X1="30" Y1="50" X2="50" Y2="50" Stroke="White" StrokeThickness="4"/>
+                <TextBox x:Name="vendegGolok" Width="30" Height="30" Margin="30,0,5,0" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+                <Image x:Name="vendegLogo" Height="100" Width="100">
+                    <Image.Source>
+                        <BitmapImage UriSource="img/AT.png"/>
+                    </Image.Source>
+                </Image>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                <ComboBox x:Name="hazaiNev" Width="120" Height="30" SelectionChanged="hazaiNev_SelectionChanged" ItemsSource="{Binding}" IsEnabled="False"/>
+
+                <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
+
+                <ComboBox x:Name="vendegNev" Width="120" Height="30" Margin="20,0,0,0" SelectionChanged="vendegNev_SelectionChanged" ItemsSource="{Binding}" IsEnabled="False"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
