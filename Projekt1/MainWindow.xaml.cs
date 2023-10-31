@@ -147,7 +147,7 @@ namespace Projekt1
                 }
                 else
                 {
-                    MessageBox.Show("Helytelen adatok adoot meg a góloknál!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Helytelen adatok adott meg a góloknál!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
