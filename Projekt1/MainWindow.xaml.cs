@@ -131,16 +131,23 @@ namespace Projekt1
 
             if (vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
             {
-                if (vendegNev.SelectedItem != hazaiNev.SelectedItem)
+                if (!String.IsNullOrEmpty(hazaiGolok.Text) && int.TryParse(hazaiGolok.Text, out int hg) && !String.IsNullOrEmpty(vendegGolok.Text) && int.TryParse(vendegGolok.Text, out int vg))
                 {
-                    megoldas.makeNewMatch(hazaiNev.SelectedItem.ToString(), hazaiGolok.Text, vendegNev.SelectedItem.ToString(), vendegGolok.Text);
-                    hazaiGolok.Text = "";
-                    vendegGolok.Text = "";
-                    data.Items.Refresh();
+                    if (vendegNev.SelectedItem != hazaiNev.SelectedItem)
+                    {
+                        megoldas.makeNewMatch(hazaiNev.SelectedItem.ToString(), hazaiGolok.Text, vendegNev.SelectedItem.ToString(), vendegGolok.Text);
+                        hazaiGolok.Text = "";
+                        vendegGolok.Text = "";
+                        data.Items.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Egy csapat önmagával nem játszhat!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Egy csapat önmagával nem játszhat!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Helytelen adatok adoot meg a góloknál!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
