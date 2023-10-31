@@ -25,13 +25,11 @@ namespace Projekt1
     public partial class MainWindow : Window
     {
         megold megoldas = new megold();
-        ObservableCollection<string> teamNames;
         private int id = 1;
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = megoldas;
-            teamNames = new ObservableCollection<string>();
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)
@@ -65,7 +63,7 @@ namespace Projekt1
             string name = CsapatNevTb.Text.ToString();
             if (!String.IsNullOrEmpty(name))
             {
-                if (!teamNames.Contains(name))
+                if (!megoldas.teamsNames.Contains(name))
                 {
                     if (logoS.Content != "")
                     {
@@ -73,11 +71,13 @@ namespace Projekt1
                         string logoSource = logoS.Content.ToString();
                         Team newTeam = new Team($"{id}", name, 0, 0, 0, 0, logoSource);
                         megoldas.teams.Add(newTeam);
-                        teamNames.Add(name);
+                        megoldas.teamsNames.Add(name);
                         logoS.Content = "";
                         id++;
                         validLogoImg.Visibility = Visibility.Hidden;
                         data.Items.Refresh();
+                        hazaiNev.Items.Refresh();
+                        vendegNev.Items.Refresh();
                     }
                     else
                     {
