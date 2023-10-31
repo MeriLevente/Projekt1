@@ -103,11 +103,11 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <ComboBox x:Name="hazaiNev" Width="120" Height="30" SelectionChanged="hazaiNev_SelectionChanged" ItemsSource="{Binding teamsNames}" IsEnabled="False"/>
+                <ComboBox x:Name="hazaiNev" Width="120" Height="30" SelectionChanged="hazaiNev_SelectionChanged" ItemsSource="{Binding teamsNames}" />
 
                 <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="RogzitBtn_Click"/>
 
-                <ComboBox x:Name="vendegNev" Width="120" Height="30" Margin="20,0,0,0" SelectionChanged="vendegNev_SelectionChanged" ItemsSource="{Binding teamsNames}" IsEnabled="False"/>
+                <ComboBox x:Name="vendegNev" Width="120" Height="30" Margin="20,0,0,0" SelectionChanged="vendegNev_SelectionChanged" ItemsSource="{Binding teamsNames}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

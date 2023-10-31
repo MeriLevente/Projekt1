@@ -74,7 +74,6 @@ namespace Projekt1
                         Team newTeam = new Team($"{id}", name, 0, 0, 0, 0, logoSource);
                         megoldas.teams.Add(newTeam);
                         teamNames.Add(name);
-                        FillComboBoxesWithTeamNames();
                         logoS.Content = "";
                         id++;
                         validLogoImg.Visibility = Visibility.Hidden;
@@ -96,21 +95,6 @@ namespace Projekt1
             }
         }
 
-        private void FillComboBoxesWithTeamNames()
-        {
-            hazaiNev.IsEnabled = true;
-            vendegNev.IsEnabled = true;
-            teamNames.Clear();
-            if (megoldas.teams.Count > 1)
-            {
-                megoldas.teams.ToList().ForEach(x =>
-                {
-                    teamNames.Add(x.name);
-                });
-                hazaiNev.DataContext = teamNames;
-                vendegNev.DataContext = teamNames;
-            }
-        }
 
         private void hazaiNev_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -144,13 +128,15 @@ namespace Projekt1
 
         private void RogzitBtn_Click(object sender, RoutedEventArgs e)
         {
+
             if (vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
             {
-                if(vendegNev.SelectedItem != hazaiNev.SelectedItem)
+                if (vendegNev.SelectedItem != hazaiNev.SelectedItem)
                 {
                     megoldas.makeNewMatch(hazaiNev.SelectedItem.ToString(), hazaiGolok.Text, vendegNev.SelectedItem.ToString(), vendegGolok.Text);
                     hazaiGolok.Text = "";
                     vendegGolok.Text = "";
+                    data.Items.Refresh();
                 }
                 else
                 {
