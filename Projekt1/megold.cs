@@ -34,6 +34,15 @@ namespace Projekt1
             set { _teams = value; OnPropertyChanged("teams"); }
         }
 
+
+        private ObservableCollection<string> _teamsNames;
+        public ObservableCollection<string> teamsNames
+        {
+            get { return _teamsNames; }
+            set { _teamsNames = value; OnPropertyChanged("teamsNames"); }
+        }
+
+
         public List<Match> newMatches { get; set; }
 
         private int matchCount;
@@ -42,6 +51,7 @@ namespace Projekt1
             _matches = new ObservableCollection<Match>();
             newMatches = new List<Match>();
             _teams = new ObservableCollection<Team>();
+            _teamsNames = new ObservableCollection<string>();
 
             callMatchAPI();
             callTeamAPI();
@@ -60,7 +70,20 @@ namespace Projekt1
                 _teams.Add(item);
 
             getTeamesData();
+            getTeamsName();
+
         }
+
+
+        public void getTeamsName()
+        {
+            foreach (var team in _teams)
+            {
+                _teamsNames.Add(team.name);
+            }
+        }
+
+
 
         public void getTeamesData()
         {

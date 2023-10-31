@@ -144,11 +144,11 @@ namespace Projekt1
 
         private void RogzitBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
+            if (vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
             {
                 if(vendegNev.SelectedItem != hazaiNev.SelectedItem)
                 {
-                    //meccseredmény rögzítése ITT
+                    megoldas.makeNewMatch(hazaiNev.SelectedItem.ToString(), hazaiGolok.Text, vendegNev.SelectedItem.ToString(), vendegGolok.Text);
                     hazaiGolok.Text = "";
                     vendegGolok.Text = "";
                 }
