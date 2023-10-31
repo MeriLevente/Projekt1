@@ -79,7 +79,7 @@ namespace Projekt1
         }
 
 
-        public static async Task<string?> sendTeamChangeAPI(string datas)
+        public static async Task<string?> sendMatchChangeAPI(string datas)
         {
             var client = new HttpClient();
             var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/send.php" + "?" + datas;
@@ -100,5 +100,27 @@ namespace Projekt1
             return null;
         }
 
+
+
+        public static async Task<string?> sendTeamChangeAPI(string datas)
+        {
+            var client = new HttpClient();
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/appendTeams.php" + "?" + datas;
+
+            var body = "{}";
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(body)
+            };
+            Console.WriteLine(request);
+
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return content;
+            }
+            return null;
+        }
     }
 }

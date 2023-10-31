@@ -146,7 +146,7 @@ namespace Projekt1
 
         public async Task sendAPI(string line)
         {
-            string ret = await API.sendTeamChangeAPI(line);
+            string ret = await API.sendMatchChangeAPI(line);
             if (ret == "Failed")
             {
                 MessageBox.Show("Hiba az API hívásban", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
