@@ -102,7 +102,7 @@ namespace Projekt1
 
 
 
-        public static async Task<string?> sendTeamChangeAPI(string datas)
+        public static async Task<string?> appendTeamsAPI(string datas)
         {
             var client = new HttpClient();
             var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/appendTeams.php" + "?" + datas;
