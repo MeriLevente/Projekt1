@@ -121,7 +121,7 @@ namespace Projekt1
 
         private void RogzitBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            meccsElőzményekBtn.IsEnabled = true;
             if (vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
             {
                 if (!String.IsNullOrEmpty(hazaiGolok.Text) && int.TryParse(hazaiGolok.Text, out int hg) && !String.IsNullOrEmpty(vendegGolok.Text) && int.TryParse(vendegGolok.Text, out int vg))
@@ -143,6 +143,12 @@ namespace Projekt1
                     MessageBox.Show("Helytelen adatok adott meg a góloknál!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void meccsElőzményekBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MeccsElozmenyek w = new MeccsElozmenyek();
+            w.Show();
         }
     }
 }
