@@ -65,19 +65,12 @@ namespace Projekt1
             {
                 if (!megoldas.teamsNames.Contains(name))
                 {
-                    if (logoS.Content != "")
+                    if (LogoUrlTb.Text.ToString() != "")
                     {
-                        //csapat felvétele a datagridbe
-                        string logoSource = logoS.Content.ToString();
-                        Team newTeam = new Team($"{id}", name, 0, 0, 0, 0, logoSource);
-                        megoldas.teams.Add(newTeam);
-                        megoldas.teamsNames.Add(name);
-                        logoS.Content = "";
-                        id++;
-                        validLogoImg.Visibility = Visibility.Hidden;
+                        megoldas.makeNewTeam(name, LogoUrlTb.Text.ToString());
                         data.Items.Refresh();
-                        hazaiNev.Items.Refresh();
-                        vendegNev.Items.Refresh();
+                        CsapatNevTb.Text = "";
+                        LogoUrlTb.Text = "";
                     }
                     else
                     {

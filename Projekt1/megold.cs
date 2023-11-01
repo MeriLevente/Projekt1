@@ -136,6 +136,25 @@ namespace Projekt1
             getTeamesData();
         }
 
+
+
+
+        public void makeNewTeam(string name, string logoUrl)
+        {
+
+            int teamCount = _teams.Count;
+
+            string id = teamCount.ToString();
+
+            _teams.Add(new Team(id, name, 0, 0, 0, 0, logoUrl));
+
+            var _ = API.appendTeamsAPI($"{id};{name};{logoUrl}");
+
+            getTeamesData();
+        }
+
+
+
         public void runOnClose()
         {
             foreach (Match team in newMatches)
