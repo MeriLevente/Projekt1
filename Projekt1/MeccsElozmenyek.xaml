@@ -18,14 +18,14 @@
         <Label Content="Meccs Előzmények" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White"/>
         <Line X1="50" Y1="40" X2="350" Y2="40" Stroke="White" StrokeThickness="4"/>
 
-        <ListBox Grid.Row="1" Margin="30" x:Name="meccsekLB" ItemsSource="{Binding matches, Mode=TwoWay}">
+        <ListBox Grid.Row="1" Margin="30" x:Name="meccsekLB" ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding home, Mode=TwoWay}"/>
-                        <TextBlock Text="{Binding homeGoal, Mode=TwoWay}"/>
-                        <TextBlock Text="{Binding away, Mode=TwoWay}"/>
-                        <TextBlock Text="{Binding awayGoal, Mode=TwoWay}"/>
+                        <TextBlock Text="{Binding home}"/>
+                        <TextBlock Text="{Binding homeGoal}"/>
+                        <TextBlock Text="{Binding away}"/>
+                        <TextBlock Text="{Binding awayGoal}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

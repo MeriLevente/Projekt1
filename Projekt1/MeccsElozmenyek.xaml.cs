@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +19,16 @@ namespace Projekt1
     /// Interaction logic for MeccsElozmenyek.xaml
     /// </summary>
     public partial class MeccsElozmenyek : Window
-    {
-        megold megoldas = new megold();
+    { 
         public MeccsElozmenyek()
         {
             InitializeComponent();
-            this.DataContext = megoldas;
+        }
+
+        public void ResultsUpdater(ObservableCollection<Match> matches)
+        {
+            meccsekLB.DataContext = matches;
+            meccsekLB.Items.Refresh();
         }
     }
 }

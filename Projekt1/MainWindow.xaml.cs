@@ -147,8 +147,9 @@ namespace Projekt1
 
         private void meccsElőzményekBtn_Click(object sender, RoutedEventArgs e)
         {
-            MeccsElozmenyek w = new MeccsElozmenyek();
-            w.Show();
+            MeccsElozmenyek window = new MeccsElozmenyek();
+            window.ResultsUpdater(megoldas.matches);
+            window.ShowDialog();
         }
     }
 }
