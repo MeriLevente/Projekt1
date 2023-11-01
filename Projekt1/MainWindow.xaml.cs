@@ -118,6 +118,7 @@ namespace Projekt1
                         hazaiGolok.Text = "";
                         vendegGolok.Text = "";
                         data.Items.Refresh();
+                        megoldas.sortData("Pontok száma");
                     }
                     else
                     {
@@ -133,8 +134,7 @@ namespace Projekt1
 
         private void meccsElőzményekBtn_Click(object sender, RoutedEventArgs e)
         {
-            MeccsElozmenyek window = new MeccsElozmenyek();
-            window.ResultsUpdater(megoldas.matches);
+            MeccsElozmenyek window = new MeccsElozmenyek(megoldas.matches, megoldas.teamsNames);
             window.ShowDialog();
         }
 

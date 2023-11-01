@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,20 +16,23 @@ using System.Windows.Shapes;
 
 namespace Projekt1
 {
-    /// <summary>
-    /// Interaction logic for MeccsElozmenyek.xaml
-    /// </summary>
+
     public partial class MeccsElozmenyek : Window
-    { 
-        public MeccsElozmenyek()
+    {
+        ObservableCollection<Match> matches;
+        ObservableCollection<string> teamNames;
+        public MeccsElozmenyek(ObservableCollection<Match> matches, ObservableCollection<string> teamNames)
         {
-            InitializeComponent();      
+            InitializeComponent();
+            this.matches = matches;
+            this.teamNames = teamNames;
+            ResultsUpdater();
         }
 
-        public void ResultsUpdater(ObservableCollection<Match> matches)
+        public void ResultsUpdater()
         {
+            teamsCB.DataContext = teamNames;
             meccsekLB.DataContext = matches;
-            MakeTheWinnersGreen(matches);
             meccsekLB.Items.Refresh();
         }
 
@@ -38,9 +42,29 @@ namespace Projekt1
             {
                 if(int.Parse(x.homeGoal) > int.Parse(x.awayGoal))
                 {
-                    
+                    //homeLabel.Foreground = Brushes.Green;
+                    //homeGoalLabel.FontWeight = FontWeights.Bold;
                 }
             });
+        }
+
+        private void teamsCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            allTeamsRB.IsChecked = false;
+            ObservableCollection<Match> filteredMatches = new ObservableCollection<Match>();
+            matches.ToList().ForEach(x =>
+            {
+               if (x.home == teamsCB.SelectedItem.ToString() || x.away == teamsCB.SelectedItem.ToString())
+                     filteredMatches.Add(x);
+            });
+            meccsekLB.DataContext = filteredMatches;
+            meccsekLB.Items.Refresh();
+        }
+
+        private void allTeamsRB_Checked(object sender, RoutedEventArgs e)
+        {
+            meccsekLB.DataContext = matches;
+            meccsekLB.Items.Refresh();
         }
     }
 }
