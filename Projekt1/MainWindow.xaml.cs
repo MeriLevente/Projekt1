@@ -30,6 +30,7 @@ namespace Projekt1
         {
             InitializeComponent();
             this.DataContext = megoldas;
+            makeSortLB();
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)
@@ -150,6 +151,21 @@ namespace Projekt1
             MeccsElozmenyek window = new MeccsElozmenyek();
             window.ResultsUpdater(megoldas.matches);
             window.ShowDialog();
+        }
+
+
+        public void makeSortLB()
+        {
+            string[] sortTypes = { "Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma" };
+            sortCB.ItemsSource = sortTypes;
+            sortCB.SelectedIndex = 4;
+
+
+        }
+
+        public void sortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            megoldas.sortData(sortCB.SelectedItem.ToString());
         }
     }
 }

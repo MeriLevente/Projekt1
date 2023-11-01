@@ -1,17 +1,21 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Markup;
+using System.Windows.Media.Animation;
 
 namespace Projekt1
 {
-    public class megold: INotifyPropertyChanged
+    public class megold : INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -171,5 +175,40 @@ namespace Projekt1
                 MessageBox.Show("Hiba az API hívásban", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+
+        public void sortData(string sender)
+        {
+
+            //"Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma"
+            switch (sender)
+            {
+                case "Csapatok":
+                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.name));
+
+                    break;
+                case "Lejátszott mecsek száma":
+                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games).Reverse());
+                    break;
+                case "Lőtt gólok száma":
+                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored).Reverse());
+                    teams.Reverse();
+                    break;
+                case "Kapott gólok száma":
+                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsConceided).Reverse());
+                    teams.Reverse();
+                    break;
+                case "Pontok száma":
+                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
+                    teams.Reverse();
+                    break;
+            }
+
+
+            //teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games));
+            //teams.Reverse();
+
+        }
+
     }
 }
