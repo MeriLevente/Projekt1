@@ -90,7 +90,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzmények" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2"/>
+            <Button Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzményekBtn" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="meccsElőzményekBtn_Click" IsEnabled="False"/>
         </StackPanel>
 
 
