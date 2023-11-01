@@ -44,21 +44,6 @@ namespace Projekt1
             megoldas.runOnClose();
         }
 
-        private void logoBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var file = new Microsoft.Win32.OpenFileDialog() { Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg" };
-            file.InitialDirectory = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent}\\logos";
-            var result = file.ShowDialog();
-            if (result == true)
-            {
-                logoS.Content = file.FileName;
-                validLogoImg.Visibility = Visibility.Visible;
-            }
-            else
-                logoS.Content = "";
-
-        }
-
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
             string name = CsapatNevTb.Text.ToString();

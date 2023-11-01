@@ -22,10 +22,10 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding home}"/>
-                        <TextBlock Text="{Binding homeGoal}"/>
-                        <TextBlock Text="{Binding away}"/>
-                        <TextBlock Text="{Binding awayGoal}"/>
+                        <Label Content="{Binding home}" x:Name="homeLabel"/>
+                        <Label Content="{Binding homeGoal}" x:Name="homeGoalTb"/>
+                        <Label Content="{Binding away}" x:Name="awayTb"/>
+                        <Label Content="{Binding awayGoal}" x:Name="awayGoalTb"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -22,13 +22,25 @@ namespace Projekt1
     { 
         public MeccsElozmenyek()
         {
-            InitializeComponent();
+            InitializeComponent();      
         }
 
         public void ResultsUpdater(ObservableCollection<Match> matches)
         {
             meccsekLB.DataContext = matches;
+            MakeTheWinnersGreen(matches);
             meccsekLB.Items.Refresh();
+        }
+
+        private void MakeTheWinnersGreen(ObservableCollection<Match> matches)
+        {
+            matches.ToList().ForEach(x =>
+            {
+                if(int.Parse(x.homeGoal) > int.Parse(x.awayGoal))
+                {
+                    
+                }
+            });
         }
     }
 }
