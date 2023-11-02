@@ -31,6 +31,7 @@ namespace Projekt1
             teamsCB.DataContext = teamNames;
             meccsekLB.DataContext = matches;
             meccsekLB.Items.Refresh();
+            GetMostWinsandLoses();
         }
 
         private void MakeTheWinnersGreen(ObservableCollection<Match> matches)
@@ -144,6 +145,75 @@ namespace Projekt1
                 meccsekLB.DataContext = null;
                 meccsekLB.Items.Refresh();
             }
+        }
+
+        private void GetMostWinsandLoses()
+        {
+            Dictionary<string, int> Winstat = new Dictionary<string, int>(); 
+            Dictionary<string, int> Losestat = new Dictionary<string, int>();
+            int mostWins = 0;
+            int mostLoses = 0;
+            teamNames.ToList().ForEach(x =>
+            {
+                Winstat[x] = 0;
+                Losestat[x] = 0;
+            });
+            matches.ToList().ForEach(x =>
+            {
+                teamNames.ToList().ForEach(team =>
+                {
+                    if(x.home == team)
+                    {
+                        if(int.Parse(x.homeGoal) > int.Parse(x.awayGoal))
+                        {
+                            Winstat[team]++;
+                        }
+                        else if(int.Parse(x.homeGoal) != int.Parse(x.awayGoal))
+                        {
+                            Losestat[team]++;
+                        }
+                    }
+                    if (x.away == team)
+                    {
+                        if (int.Parse(x.homeGoal) < int.Parse(x.awayGoal))
+                        {
+                            Winstat[team]++;
+                        }
+                        else if (int.Parse(x.homeGoal) != int.Parse(x.awayGoal))
+                        {
+                            Losestat[team]++;
+                        }
+                    }
+                });
+            });
+            Winstat.ToList().ForEach(x =>
+            {
+                if(x.Value > mostWins)
+                {
+                    mostWins = x.Value;
+                }
+            });
+            Losestat.ToList().ForEach(x =>
+            {
+                if(x.Value > mostLoses)
+                {
+                    mostLoses = x.Value;
+                }
+            });
+            Winstat.ToList().ForEach(x =>
+            {
+                if (x.Value == mostWins)
+                {
+                    mostWinsLabel.Content += $"{x.Key} ({x.Value})" ; //ha holtverseny lenne az összeset írja ki
+                }
+            });
+            Losestat.ToList().ForEach(x =>
+            {
+                if (x.Value == mostLoses)
+                {
+                    mostLosesLabel.Content += $"{x.Key} ({x.Value}) "; //ha holtverseny lenne az összeset írja ki
+                }
+            });
         }
     }
 }
