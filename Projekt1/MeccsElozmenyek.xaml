@@ -43,9 +43,15 @@
                     <Label Content="Csapat:" Foreground="White" Margin="10,10,0,0"/>
                     <ComboBox  Width="120" Margin="0,10,10,0" x:Name="teamsCB" ItemsSource="{Binding}" SelectionChanged="teamsCB_SelectionChanged"/>
                     <StackPanel>
-                        <Label Content="Összes csapat" Foreground="White" FontSize="8"/>
+                        <Label Content="Összes csapat" Foreground="White" FontSize="10"/>
                         <RadioButton x:Name="allTeamsRB" HorizontalAlignment="Center" IsChecked="True" Checked="allTeamsRB_Checked"/>
                     </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10" x:Name="CheckBoxSP">
+                    <Label Content="Hazai meccsek:" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <CheckBox x:Name="hazaiMeccsekCB" VerticalAlignment="Center" IsChecked="True" IsEnabled="False" Checked="hazaiMeccsekCB_Checked" Unchecked="hazaiMeccsekCB_Unchecked"/>
+                    <Label Content="Vendég meccsek:" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <CheckBox x:Name="vendegMeccsekCB" VerticalAlignment="Center" IsChecked="True" IsEnabled="False" Checked="vendegMeccsekCB_Checked" Unchecked="vendegMeccsekCB_Unchecked"/>
                 </StackPanel>
                 
             </StackPanel>
