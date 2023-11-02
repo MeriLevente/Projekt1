@@ -81,6 +81,7 @@ namespace Projekt1
 
         public void getTeamsName()
         {
+            _teamsNames.Clear();
             foreach (var team in _teams)
             {
                 _teamsNames.Add(team.name);
@@ -118,14 +119,9 @@ namespace Projekt1
                     team.goalsConceided += int.Parse(match.homeGoal);
                 }
             }
-            saa();
-
         }
 
-        private void saa()
-        {
-            Console.WriteLine($"DVXCV{teams}");
-        }
+
 
         public void makeNewMatch(string home, string homeGoal, string away, string awayGoal)
         {
@@ -137,6 +133,7 @@ namespace Projekt1
             matchCount++;
             _matches.Add(new Match(id, home, homeGoal, away, awayGoal));
             newMatches.Add(new Match(id, home, homeGoal, away, awayGoal));
+            getTeamsName();
             getTeamesData();
         }
 

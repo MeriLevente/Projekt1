@@ -57,6 +57,9 @@ namespace Projekt1
                         data.Items.Refresh();
                         CsapatNevTb.Text = "";
                         LogoUrlTb.Text = "";
+                        megoldas.getTeamsName();
+                        hazaiNev.Items.Refresh();
+                        vendegNev.Items.Refresh();
                     }
                     else
                     {
@@ -89,7 +92,6 @@ namespace Projekt1
                 });
             }
         }
-
         private void vendegNev_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (vendegNev.SelectedItem != null)
