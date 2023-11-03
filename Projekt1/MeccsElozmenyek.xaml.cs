@@ -34,27 +34,20 @@ namespace Projekt1
             GetMostWinsandLoses();
         }
 
-        private void MakeTheWinnersGreen(ObservableCollection<Match> matches)
-        {
-            matches.ToList().ForEach(x =>
-            {
-                if(int.Parse(x.homeGoal) > int.Parse(x.awayGoal))
-                {
-                    //homeLabel.Foreground = Brushes.Green;
-                    //homeGoalLabel.FontWeight = FontWeights.Bold;
-                }
-            });
-        }
-
         private ObservableCollection<Match> GetFilteredMatches()
         {
-            ObservableCollection<Match> filteredMatches = new ObservableCollection<Match>();
-            matches.ToList().ForEach(x =>
+            if(teamsCB.SelectedIndex != -1)
             {
-                if (x.home == teamsCB.SelectedItem.ToString() || x.away == teamsCB.SelectedItem.ToString())
-                    filteredMatches.Add(x);
-            });
-            return filteredMatches;
+                ObservableCollection<Match> filteredMatches = new ObservableCollection<Match>();
+                matches.ToList().ForEach(x =>
+                {
+                    if (x.home == teamsCB.SelectedItem.ToString() || x.away == teamsCB.SelectedItem.ToString())
+                        filteredMatches.Add(x);
+                });
+                return filteredMatches;
+            }
+            allTeamsRB.IsChecked = true;
+            return matches;
         }
         private void teamsCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -74,6 +67,7 @@ namespace Projekt1
                 hazaiMeccsekCB.IsEnabled = vendegMeccsekCB.IsEnabled = false;
                 hazaiMeccsekCB.IsChecked = false;
                 vendegMeccsekCB.IsChecked = false;
+                teamsCB.SelectedIndex = -1;
             }
         }
 
