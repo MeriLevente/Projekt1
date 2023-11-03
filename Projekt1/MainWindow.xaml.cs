@@ -119,6 +119,10 @@ namespace Projekt1
                         megoldas.makeNewMatch(hazaiNev.SelectedItem.ToString(), hazaiGolok.Text, vendegNev.SelectedItem.ToString(), vendegGolok.Text);
                         hazaiGolok.Text = "";
                         vendegGolok.Text = "";
+                        var UriSrcHT = new Uri(@"/Projekt1;component/img/HT.png", UriKind.Relative);
+                        hazaiLogo.Source = new BitmapImage(UriSrcHT);
+                        var UriSrcAT = new Uri(@"/Projekt1;component/img/AT.png", UriKind.Relative);
+                        vendegLogo.Source = new BitmapImage(UriSrcAT);
                         data.Items.Refresh();
                         megoldas.sortData("Pontok száma");
                     }
