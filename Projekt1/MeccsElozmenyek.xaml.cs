@@ -149,14 +149,17 @@ namespace Projekt1
 
         private void GetMostWinsandLoses()
         {
-            Dictionary<string, int> Winstat = new Dictionary<string, int>(); 
+            Dictionary<string, int> Winstat = new Dictionary<string, int>();
+            Dictionary<string, int> Drawstat = new Dictionary<string, int>();
             Dictionary<string, int> Losestat = new Dictionary<string, int>();
             int mostWins = 0;
             int mostLoses = 0;
+            ObservableCollection<string> stat = new ObservableCollection<string>();
             teamNames.ToList().ForEach(x =>
             {
                 Winstat[x] = 0;
                 Losestat[x] = 0;
+                Drawstat[x] = 0;
             });
             matches.ToList().ForEach(x =>
             {
@@ -172,6 +175,10 @@ namespace Projekt1
                         {
                             Losestat[team]++;
                         }
+                        else
+                        {
+                            Drawstat[team]++;
+                        }
                     }
                     if (x.away == team)
                     {
@@ -183,9 +190,18 @@ namespace Projekt1
                         {
                             Losestat[team]++;
                         }
+                        else
+                        {
+                            Drawstat[team]++;
+                        }
                     }
                 });
             });
+            teamNames.ToList().ForEach(x =>
+            {
+                stat.Add($"{x}: {Winstat[x]}W {Drawstat[x]}D {Losestat[x]}L");
+            });
+            statLB.DataContext = stat;
             Winstat.ToList().ForEach(x =>
             {
                 if(x.Value > mostWins)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1" d:DataContext="{d:DesignInstance Type=local:megold}"
         mc:Ignorable="d"
-        Title="MeccsElozmenyek" Height="400" Width="600" ResizeMode="NoResize">
+        Title="MeccsElozmenyek" Height="420" Width="600" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="img/red.jpg"/>
@@ -55,11 +55,12 @@
                 </StackPanel>
                 <Label Content="Statisztika" Foreground="White" FontSize="15" FontWeight="Bold" Margin="5,5,0,0"/>
                 <Line X1="10" Y1="0" X2="250" Y2="0" Stroke="White" StrokeThickness="4" Grid.ColumnSpan="2"/>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <ListBox x:Name="statLB" Margin="10,10,0,2" Height="120" Width="250" HorizontalAlignment="Left" ItemsSource="{Binding}"/>
+                <StackPanel Orientation="Horizontal" Margin="5,0">
                     <Label Content="Legtöbb győzelem:" Foreground="White"/>
                     <Label Content="" Foreground="White" x:Name="mostWinsLabel"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel Orientation="Horizontal" Margin="5,0">
                     <Label Content="Legtöbb vereség:" Foreground="White"/>
                     <Label Content="" Foreground="White" x:Name="mostLosesLabel"/>
                 </StackPanel>
