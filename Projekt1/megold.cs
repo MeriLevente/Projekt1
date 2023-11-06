@@ -180,21 +180,21 @@ namespace Projekt1
             //"Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma"
             switch (sender)
             {
-                case "Csapatok":
-                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.name));
+                //case "Csapatok":
+                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.name));
 
-                    break;
-                case "Lejátszott mecsek száma":
-                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games).Reverse());
-                    break;
-                case "Lőtt gólok száma":
-                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored).Reverse());
-                    teams.Reverse();
-                    break;
-                case "Kapott gólok száma":
-                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsConceided).Reverse());
-                    teams.Reverse();
-                    break;
+                //    break;
+                //case "Lejátszott mecsek száma":
+                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games).Reverse());
+                //    break;
+                //case "Lőtt gólok száma":
+                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored).Reverse());
+                //    teams.Reverse();
+                //    break;
+                //case "Kapott gólok száma":
+                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsConceided).Reverse());
+                //    teams.Reverse();
+                //    break;
                 case "Pontok száma":
                     teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
                     teams.Reverse();

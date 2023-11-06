@@ -16,7 +16,7 @@
             <Setter Property="BorderThickness" Value="0,0,0,1" />
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.Background>
             <ImageBrush ImageSource="img/red.jpg"/>
         </Grid.Background>
@@ -35,9 +35,14 @@
         <Line X1="100" Y1="50" X2="700" Y2="50" Stroke="White" StrokeThickness="4" Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.Row="1">
-            <ComboBox  x:Name="sortCB" Height="30" Margin="20 10 20 0" SelectionChanged="sortCB_SelectionChanged"/>
+            <!--<ComboBox  x:Name="sortCB" Height="30" Margin="20 10 20 0" SelectionChanged="sortCB_SelectionChanged"/>-->
 
-
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
+                <Label Content="Fordulók száma:" FontSize="16" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="fordulokDBTB" Width="30" Height="20" Margin="5"/>
+                <Button x:Name="fordulokDBBtn" Width="50" Height="20" Margin="5" Content="Mentés" Click="fordulokDBBtn_Click"/>
+            </StackPanel>
+            
             <ListView x:Name="data" Height="320" Width="400" HorizontalAlignment="Stretch" ItemsSource="{Binding teams}" Margin="10">
                 <ListView.View>
                     <GridView>
@@ -98,7 +103,7 @@
 
 
 
-        <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15">
+        <StackPanel  Grid.Row="1" Grid.Column="1" Margin="15" x:Name="urlapSP" IsEnabled="False">
             <Label Content="Új csapat felvétele:" FontSize="16" Foreground="White" FontWeight="Bold"/>
             <Line X1="000" Y1="0" X2="280" Y2="0" Stroke="White" StrokeThickness="4" Margin="0,0,0,10"/>
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">

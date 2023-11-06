@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,19 +28,13 @@ namespace Projekt1
     {
         megold megoldas = new megold();
         private int id = 1;
+        private int fordulokSzama = 0;
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = megoldas;
-            makeSortLB();
+            //makeSortLB();
         }
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    megoldas.makeNewMatch("Eto", "2", "Ferencváros", "4");
-        //    //data.Items.Refresh();
-        //}
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             megoldas.runOnClose();
@@ -109,6 +105,7 @@ namespace Projekt1
 
         private void RogzitBtn_Click(object sender, RoutedEventArgs e)
         {
+            int teamsFinishedDb = 0;
             meccsElőzményekBtn.IsEnabled = true;
             if (vendegNev.SelectedItem != null && hazaiNev.SelectedItem != null)
             {
@@ -125,6 +122,60 @@ namespace Projekt1
                         vendegLogo.Source = new BitmapImage(UriSrcAT);
                         data.Items.Refresh();
                         megoldas.sortData("Pontok száma");
+                        if(fordulokSzama != 0)
+                        {
+                            foreach (var t in megoldas.teams)
+                            {
+                                if (t.games >= fordulokSzama)
+                                {
+                                    teamsFinishedDb++;
+                                    
+                                }
+                            }
+                            if (teamsFinishedDb == megoldas.teams.Count)
+                            {
+                                //MessageBox.Show($"{megoldas.teams[0].name}", "Vége", MessageBoxButton.OK);
+                                urlapSP.Visibility = Visibility.Hidden;
+
+                                StackPanel bajnokSp = new StackPanel();
+                                bajnokSp.SetValue(Grid.RowProperty, 1);
+                                bajnokSp.SetValue(Grid.ColumnProperty, 1);
+
+                                Image bajnokImg = new Image();
+                                bajnokImg.Source = new BitmapImage(new Uri(megoldas.teams[0].logoSource));
+                                bajnokImg.Width = 100;
+                                bajnokImg.Height = 100;
+                                bajnokImg.HorizontalAlignment = HorizontalAlignment.Center;
+                                bajnokImg.Margin = new Thickness(0, 100, 0, 0);
+                                bajnokSp.Children.Add(bajnokImg);
+
+                                Label bajnokLabel = new Label();
+                                bajnokLabel.Content = $"{megoldas.teams[0].name} a bajnok";
+                                bajnokLabel.FontSize = 25;
+                                bajnokLabel.HorizontalAlignment = HorizontalAlignment.Center;
+                                bajnokLabel.Foreground = new SolidColorBrush(Colors.White);
+                                bajnokSp.Children.Add(bajnokLabel);
+
+                                Button newSeasonBtn = new Button();
+                                newSeasonBtn.Content = "OK";
+                                newSeasonBtn.Width = 100;
+                                newSeasonBtn.Height = 30;
+                                newSeasonBtn.HorizontalAlignment = HorizontalAlignment.Center;
+                                newSeasonBtn.Click += (s, e) =>
+                                {
+                                    fordulokDBBtn.IsEnabled = true;
+                                    fordulokDBTB.Text = "";
+                                    fordulokDBTB.IsEnabled = true;
+                                    grid.Children.Remove(bajnokSp);
+                                    urlapSP.Visibility = Visibility.Visible;
+                                    //itt kellene Resettelni az eredményeket és a tabellát
+                                };
+                                bajnokSp.Children.Add(newSeasonBtn);
+
+                                grid.Children.Add(bajnokSp);
+                            }
+                        }
+
                     }
                     else
                     {
@@ -144,19 +195,30 @@ namespace Projekt1
             window.ShowDialog();
         }
 
-
-        public void makeSortLB()
+        private void fordulokDBBtn_Click(object sender, RoutedEventArgs e)
         {
-            string[] sortTypes = { "Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma" };
-            sortCB.ItemsSource = sortTypes;
-            sortCB.SelectedIndex = 4;
-
-
+            if (!string.IsNullOrEmpty(fordulokDBTB.Text) && int.TryParse(fordulokDBTB.Text, out int fDb))
+            {
+                fordulokDBTB.IsEnabled = false;
+                fordulokDBBtn.IsEnabled = false;
+                urlapSP.IsEnabled = true;
+                fordulokSzama = fDb;
+            }
         }
 
-        public void sortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            megoldas.sortData(sortCB.SelectedItem.ToString());
-        }
+
+        //public void makeSortLB()
+        //{
+        //    string[] sortTypes = { "Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma" };
+        //    sortCB.ItemsSource = sortTypes;
+        //    sortCB.SelectedIndex = 4;
+
+
+        //}
+
+        //public void sortCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    megoldas.sortData(sortCB.SelectedItem.ToString());
+        //}
     }
 }
