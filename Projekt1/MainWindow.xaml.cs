@@ -33,6 +33,7 @@ namespace Projekt1
         {
             InitializeComponent();
             this.DataContext = megoldas;
+            fordulokDBTB.Focus();
             //makeSortLB();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
