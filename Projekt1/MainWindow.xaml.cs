@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Nodes;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -34,7 +35,7 @@ namespace Projekt1
             InitializeComponent();
             this.DataContext = megoldas;
             fordulokDBTB.Focus();
-            //makeSortLB();
+                
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -193,7 +194,15 @@ namespace Projekt1
         private void meccsElőzményekBtn_Click(object sender, RoutedEventArgs e)
         {
             MeccsElozmenyek window = new MeccsElozmenyek(megoldas.matches, megoldas.teamsNames);
+            
+            window.Closed += Window_Closed;
             window.ShowDialog();
+        }
+
+        private void Window_Closed(object? sender, EventArgs e)
+        {
+            megoldas.getTeamesData();
+            data.Items.Refresh();
         }
 
         private void fordulokDBBtn_Click(object sender, RoutedEventArgs e)
@@ -204,6 +213,17 @@ namespace Projekt1
                 fordulokDBBtn.IsEnabled = false;
                 urlapSP.IsEnabled = true;
                 fordulokSzama = fDb;
+            }
+        }
+
+        private void delTeam_Click(object sender, RoutedEventArgs e)
+        {
+            Team selecteTeam = (Team)data.SelectedItem;
+
+            if (selecteTeam != null && selecteTeam.games < 1)
+            {
+                megoldas.delTeamById(selecteTeam.id);
+                data.Items.Refresh();
             }
         }
 

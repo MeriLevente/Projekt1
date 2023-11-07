@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
-        Title="Tabella" Height="500" Width="800"
+        Title="Tabella" Height="520" Width="800"
         Closing="Window_Closing" ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -98,7 +98,12 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzményekBtn" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="meccsElőzményekBtn_Click" IsEnabled="True"/>
+            <StackPanel Orientation="Horizontal">
+                <Button  Margin="10 0 0 0" Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="meccsElőzményekBtn" Content="Meccs Előzmények"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="meccsElőzményekBtn_Click" IsEnabled="True"/>
+                <Button  Margin="80 0 0 0" Grid.Row="1" Height="25" VerticalAlignment="Bottom" x:Name="delTeam" Content="Kijelölt csapat törlése"  Width="150" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" IsEnabled="True" Click="delTeam_Click"/>
+
+
+            </StackPanel>
         </StackPanel>
 
 

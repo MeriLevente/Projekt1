@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,8 +23,11 @@ namespace Projekt1
         ObservableCollection<Match> matches;
         ObservableCollection<string> teamNames;
         bool windowFullyLoaded = false;
+
+        megold megoldas;
         public MeccsElozmenyek(ObservableCollection<Match> matches, ObservableCollection<string> teamNames)
         {
+            megoldas = new megold();
             InitializeComponent();
             windowFullyLoaded = true;
             this.matches = matches;
@@ -214,6 +218,7 @@ namespace Projekt1
             {
                 if (x.Value == mostWins)
                 {
+                    mostWinsLabel.Content = "";
                     mostWinsLabel.Content += $"{x.Key} ({x.Value})" ; //ha holtverseny lenne az összeset írja ki
                 }
             });
@@ -221,9 +226,25 @@ namespace Projekt1
             {
                 if (x.Value == mostLoses)
                 {
+                    mostLosesLabel.Content = "";
                     mostLosesLabel.Content += $"{x.Key} ({x.Value}) "; //ha holtverseny lenne az összeset írja ki
                 }
             });
+        }
+
+        private void delMatch_Click(object sender, RoutedEventArgs e)
+        {
+            Match selecteMatch = (Match)meccsekLB.SelectedItem;
+
+
+            if (selecteMatch != null)
+            {
+                megoldas.delMatchById(selecteMatch.id);
+                matches.Remove(matches.Where(x => x.id == selecteMatch.id).First());
+                meccsekLB.Items.Refresh();
+                GetMostWinsandLoses();
+                meccsekLB.DataContext = GetFilteredMatches();
+            }
         }
     }
 }

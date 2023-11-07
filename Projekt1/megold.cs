@@ -90,6 +90,22 @@ namespace Projekt1
 
 
 
+        public void delMatchById(string id)
+        {
+            _matches.Remove(_matches.Where(x => x.id == id).First());
+            API.deletMatchAPI(id);
+            getTeamesData();
+        }
+
+
+        public void delTeamById(string id)
+        {
+            _teams.Remove(_teams.Where(x => x.id == id).First());
+            API.deletMatchAPI(id);
+            getTeamsName();
+            getTeamesData();
+        }
+
         public void getTeamesData()
         {
             foreach (var team in _teams)
@@ -119,6 +135,7 @@ namespace Projekt1
                     team.goalsConceided += int.Parse(match.homeGoal);
                 }
             }
+            sortData("");
         }
 
 
@@ -176,30 +193,32 @@ namespace Projekt1
 
         public void sortData(string sender)
         {
-
+            teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
+            teams.Reverse();
+ 
             //"Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma"
-            switch (sender)
-            {
-                //case "Csapatok":
-                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.name));
+            //switch (sender)
+            //{
+            //case "Csapatok":
+            //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.name));
 
-                //    break;
-                //case "Lejátszott mecsek száma":
-                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games).Reverse());
-                //    break;
-                //case "Lőtt gólok száma":
-                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored).Reverse());
+            //    break;
+            //case "Lejátszott mecsek száma":
+            //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games).Reverse());
+            //    break;
+            //case "Lőtt gólok száma":
+            //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored).Reverse());
+            //    teams.Reverse();
+            //    break;
+            //case "Kapott gólok száma":
+            //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsConceided).Reverse());
+            //    teams.Reverse();
+            //    break;
+                //case "Pontok száma":
+                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
                 //    teams.Reverse();
                 //    break;
-                //case "Kapott gólok száma":
-                //    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsConceided).Reverse());
-                //    teams.Reverse();
-                //    break;
-                case "Pontok száma":
-                    teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
-                    teams.Reverse();
-                    break;
-            }
+            //}
 
 
             //teams = new ObservableCollection<Team>(teams.OrderBy(i => i.games));
