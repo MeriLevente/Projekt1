@@ -93,7 +93,7 @@ namespace Projekt1
         public void delMatchById(string id)
         {
             _matches.Remove(_matches.Where(x => x.id == id).First());
-            API.deletMatchAPI(id);
+            API.deletByIdAPI(id, "matches");
             getTeamesData();
         }
 
@@ -101,7 +101,7 @@ namespace Projekt1
         public void delTeamById(string id)
         {
             _teams.Remove(_teams.Where(x => x.id == id).First());
-            API.deletMatchAPI(id);
+            API.deletByIdAPI(id, "teams");
             getTeamsName();
             getTeamesData();
         }

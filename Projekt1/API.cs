@@ -124,24 +124,24 @@ namespace Projekt1
         }
 
 
-        public static async Task<string?> deletMatchAPI(string id)
+        public static async Task<string?> deletByIdAPI(string id, string table)
         {
-            //var client = new HttpClient();
-            //var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/" + "?" + id;
+            var client = new HttpClient();
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/delById.php" + "?" + table + ";" +id;
 
-            //var body = "{}";
-            //var request = new HttpRequestMessage(HttpMethod.Post, url)
-            //{
-            //    Content = new StringContent(body)
-            //};
-            //Console.WriteLine(request);
+            var body = "{}";
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(body)
+            };
+            Console.WriteLine(request);
 
-            //var response = await client.SendAsync(request);
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    string content = await response.Content.ReadAsStringAsync();
-            //    return content;
-            //}
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return content;
+            }
             return null;
         }
 
