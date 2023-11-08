@@ -37,10 +37,6 @@ namespace Projekt1
             fordulokDBTB.Focus();
                 
         }
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            megoldas.runOnClose();
-        }
 
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
@@ -170,8 +166,14 @@ namespace Projekt1
                                     fordulokDBTB.IsEnabled = true;
                                     grid.Children.Remove(bajnokSp);
                                     urlapSP.Visibility = Visibility.Visible;
+                                    megoldas.matches.Clear();
+                                    megoldas.getTeamesData();
+                                    API.deletAllItemsAPI();
+                                    data.Items.Refresh();
                                     //itt kellene Resettelni az eredményeket és a tabellát
                                 };
+                                meccsElőzményekBtn.IsEnabled = true;
+                                urlapSP.IsEnabled = false;
                                 bajnokSp.Children.Add(newSeasonBtn);
 
                                 grid.Children.Add(bajnokSp);

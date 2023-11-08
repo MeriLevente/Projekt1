@@ -142,14 +142,20 @@ namespace Projekt1
 
         public void makeNewMatch(string home, string homeGoal, string away, string awayGoal)
         {
-            if (matchCount == 0)
+            List<Match> matchesw = (List<Match>)matches.ToList();
+            List<int> ids = new List<int>();
+            foreach (var item in matchesw)
             {
-                matchCount = _matches.Count;
+                ids.Add(int.Parse(item.id));
             }
-            string id = matchCount.ToString();
-            matchCount++;
+            if (ids.Count == 0)
+            {
+                ids.Add(0);
+            }
+            int a = ids.Max() + 1 ;
+            string id = a.ToString();
             _matches.Add(new Match(id, home, homeGoal, away, awayGoal));
-            newMatches.Add(new Match(id, home, homeGoal, away, awayGoal));
+            sendAPI($"{id};{home};{homeGoal};{away};{awayGoal}");
             getTeamsName();
             getTeamesData();
         }
@@ -160,9 +166,18 @@ namespace Projekt1
         public void makeNewTeam(string name, string logoUrl)
         {
 
-            int teamCount = _teams.Count;
-
-            string id = teamCount.ToString();
+            List<Team> teamsL = (List<Team>)teams.ToList();
+            List<int> ids = new List<int>();
+            foreach (var item in teamsL)
+            {
+                ids.Add(int.Parse(item.id));
+            }
+            if (ids.Count == 0)
+            {
+                ids.Add(0);
+            }
+            int a = ids.Max() + 1;
+            string id = a.ToString();
 
             _teams.Add(new Team(id, name, 0, 0, 0, 0, logoUrl));
 
@@ -173,13 +188,6 @@ namespace Projekt1
 
 
 
-        public void runOnClose()
-        {
-            foreach (Match team in newMatches)
-            {
-                _ = sendAPI($"{team.id};{team.home};{team.homeGoal};{team.away};{team.awayGoal}");
-            }
-        }
 
         public async Task sendAPI(string line)
         {

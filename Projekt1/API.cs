@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Net.Http.Json;
 using System.Windows.Media.Animation;
 using Newtonsoft.Json;
+using System.Threading;
+using System.Windows;
 
 namespace Projekt1
 {
@@ -18,7 +20,7 @@ namespace Projekt1
         {
             var client = new HttpClient();
 
-            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/get.php";
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/getMatches.php";
 
             var body = "{}";
 
@@ -41,6 +43,10 @@ namespace Projekt1
                     matches.Add(new Match(item));
                 }
                 return matches;
+            }
+            else
+            {
+                MessageBox.Show("Hiba történt a meccsek lekérdezése során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return null;
         }
@@ -75,6 +81,10 @@ namespace Projekt1
                 }
                 return teams;
             }
+            else
+            {
+                MessageBox.Show("Hiba történt a csapatok lekérdezése során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             return null;
         }
 
@@ -96,6 +106,10 @@ namespace Projekt1
             {
                 string content = await response.Content.ReadAsStringAsync();
                 return content;
+            }
+            else
+            {
+                MessageBox.Show("Hiba történt a meccs változtatása során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return null;
         }
@@ -120,6 +134,10 @@ namespace Projekt1
                 string content = await response.Content.ReadAsStringAsync();
                 return content;
             }
+            else
+            {
+                MessageBox.Show("Hiba történt a csapat hozzáadása során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             return null;
         }
 
@@ -141,6 +159,35 @@ namespace Projekt1
             {
                 string content = await response.Content.ReadAsStringAsync();
                 return content;
+            }
+            else
+            {
+                MessageBox.Show("Hiba történt a törlés során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return null;
+        }
+
+        public static async Task<string?> deletAllItemsAPI()
+        {
+            var client = new HttpClient();
+            var url = "http://www.eskmenfocsanak.hu/r%C3%A1di%C3%B3/delTable.php";
+
+            var body = "{}";
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new StringContent(body)
+            };
+            Console.WriteLine(request);
+
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                return content;
+            }
+            else
+            {
+                MessageBox.Show("Hiba történt a törlés során!", "Hiba", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             return null;
         }

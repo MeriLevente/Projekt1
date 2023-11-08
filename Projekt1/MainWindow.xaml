@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
         Title="Tabella" Height="520" Width="800"
-        Closing="Window_Closing" ResizeMode="NoResize">
+        ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="IsEnabled" Value="False"/>
