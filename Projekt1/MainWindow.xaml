@@ -57,30 +57,30 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="40">
+                            <GridViewColumn Width="50">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding games}"  Margin="3"></TextBlock>
+                                        <TextBlock Text="{Binding games}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                                 <GridViewColumn.Header>
                                 <TextBlock Text="LM" ToolTip="Lejátszott meccsek száma"></TextBlock>
                                 </GridViewColumn.Header>
                             </GridViewColumn>
-                            <GridViewColumn Width="40">
+                            <GridViewColumn Width="50">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding goalsScored}"  Margin="3"></TextBlock>
+                                        <TextBlock Text="{Binding goalsScored}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                                 <GridViewColumn.Header>
                                     <TextBlock Text="LG" ToolTip="Lőtt gólok száma"></TextBlock>
                                 </GridViewColumn.Header>
                             </GridViewColumn>
-                            <GridViewColumn Width="40">
+                            <GridViewColumn Width="50">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding goalsConceided}"  Margin="3"></TextBlock>
+                                        <TextBlock Text="{Binding goalsConceided}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                                 <GridViewColumn.Header>
