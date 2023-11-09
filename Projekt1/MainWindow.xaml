@@ -128,7 +128,7 @@
                 <Label x:Name="logoS" Visibility="Hidden" Content=""/>
             </StackPanel>
 
-            <Button x:Name="Mentés" Content="Mentés" Width="100" Height="25" Margin="20" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="Mentés_Click"/>
+            <Button x:Name="Mentés" Content="Mentés" Width="100" Height="25" Margin="20" Background="White"  FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="Mentés_Click"/>
         
         <Label Content="Meccs eredmény rögzítése:" FontSize="16" Foreground="White" FontWeight="Bold"/>
             <Line X1="000" Y1="0" X2="280" Y2="0" Stroke="White" StrokeThickness="4" Margin="0,0,0,10"/>
@@ -154,7 +154,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <ComboBox x:Name="hazaiNev" Width="120" Height="30" SelectionChanged="hazaiNev_SelectionChanged" ItemsSource="{Binding teamsNames}" />
 
-                <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White" Foreground="Red" FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="RogzitBtn_Click"/>
+                <Button x:Name="RogzitBtn" Content="Rögzítés" Width="60" Height="25" Margin="25,0,0,0" Background="White"  FontWeight="Bold" BorderBrush="Red" BorderThickness="2" Click="RogzitBtn_Click"/>
 
                 <ComboBox x:Name="vendegNev" Width="120" Height="30" Margin="20,0,0,0" SelectionChanged="vendegNev_SelectionChanged" ItemsSource="{Binding teamsNames}"/>
             </StackPanel>

@@ -164,6 +164,8 @@ namespace Projekt1
                                     fordulokDBBtn.IsEnabled = true;
                                     fordulokDBTB.Text = "";
                                     fordulokDBTB.IsEnabled = true;
+                                    Mentés.Foreground = new SolidColorBrush(Colors.Gray);
+                                    RogzitBtn.Foreground = new SolidColorBrush(Colors.Gray);
                                     grid.Children.Remove(bajnokSp);
                                     urlapSP.Visibility = Visibility.Visible;
                                     megoldas.matches.Clear();
@@ -214,6 +216,8 @@ namespace Projekt1
                 fordulokDBTB.IsEnabled = false;
                 fordulokDBBtn.IsEnabled = false;
                 urlapSP.IsEnabled = true;
+                Mentés.Foreground = new SolidColorBrush(Colors.Red);
+                RogzitBtn.Foreground = new SolidColorBrush(Colors.Red);
                 fordulokSzama = fDb;
             }
         }
