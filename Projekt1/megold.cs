@@ -201,7 +201,10 @@ namespace Projekt1
 
         public void sortData(string sender)
         {
-            teams = new ObservableCollection<Team>(teams.OrderBy(i => i.point).Reverse());
+
+            ObservableCollection<Team> teams2 = new ObservableCollection<Team>(teams.OrderBy(i => i.goalsScored - i.goalsConceided));
+
+            teams = new ObservableCollection<Team>(teams2.OrderBy(i => i.point).Reverse());
             teams.Reverse();
  
             //"Csapatok", "Lejátszott mecsek száma", "Lőtt gólok száma", "Kapott gólok száma", "Pontok száma"
