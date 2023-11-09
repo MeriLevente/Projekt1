@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1" d:DataContext="{d:DesignInstance Type=local:megold}"
         mc:Ignorable="d"
-        Title="MeccsElozmenyek" Height="420" Width="600" ResizeMode="NoResize">
+        Title="MeccsElozmenyek" Height="450" Width="600" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="img/red.jpg"/>
@@ -22,7 +22,8 @@
         <Label Content="Meccs Előzmények" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" Grid.ColumnSpan="2"/>
         <Line X1="50" Y1="40" X2="550" Y2="40" Stroke="White" StrokeThickness="4" Grid.ColumnSpan="2"/>
         <StackPanel Grid.Row="1">
-            <ListBox  Margin="10" x:Name="meccsekLB" ItemsSource="{Binding}" Height="250">
+            <Label Content="Eredmények" Margin="10,10,0,5" Foreground="White" FontSize="15" FontWeight="Bold"/>
+            <ListBox  Margin="10,0,0,10" x:Name="meccsekLB" ItemsSource="{Binding}" Height="250">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <DockPanel>
