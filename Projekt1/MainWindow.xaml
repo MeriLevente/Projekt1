@@ -57,35 +57,26 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="50">
+                            <GridViewColumn Width="50" Header="LM">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding games}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumn.Header>
-                                <TextBlock Text="LM" ToolTip="Lejátszott meccsek száma"></TextBlock>
-                                </GridViewColumn.Header>
                             </GridViewColumn>
-                            <GridViewColumn Width="50">
+                            <GridViewColumn Width="50" Header="LG">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding goalsScored}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="LG" ToolTip="Lőtt gólok száma"></TextBlock>
-                                </GridViewColumn.Header>
                             </GridViewColumn>
-                            <GridViewColumn Width="50">
+                            <GridViewColumn Width="50" Header="KG">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding goalsConceided}"  Margin="10"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumn.Header>
-                                    <TextBlock Text="KG" ToolTip="Kapott gólok száma"></TextBlock>
-                                </GridViewColumn.Header>
                             </GridViewColumn>
                             <GridViewColumn Width="50" Header="Pontok">
                                 <GridViewColumn.CellTemplate>

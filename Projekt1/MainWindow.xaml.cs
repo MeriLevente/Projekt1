@@ -197,7 +197,7 @@ namespace Projekt1
 
         private void meccsElőzményekBtn_Click(object sender, RoutedEventArgs e)
         {
-            MeccsElozmenyek window = new MeccsElozmenyek(megoldas.matches, megoldas.teamsNames);
+             MeccsElozmenyek window = new MeccsElozmenyek(megoldas.matches, megoldas.teamsNames);
             
             window.Closed += Window_Closed;
             window.ShowDialog();
