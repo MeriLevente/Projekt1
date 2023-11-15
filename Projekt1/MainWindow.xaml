@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt1"
         mc:Ignorable="d"
-        Title="Tabella" Height="520" Width="850"
+        Title="Tabella" Height="520" Width="840"
         ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type GridViewColumnHeader}">
@@ -43,7 +43,7 @@
                 <Button x:Name="fordulokDBBtn" Width="50" Height="20" Margin="5" Content="Mentés" Click="fordulokDBBtn_Click"/>
             </StackPanel>
             
-            <ListView x:Name="data" Height="320" Width="420" HorizontalAlignment="Stretch" ItemsSource="{Binding teams}" Margin="10">
+            <ListView x:Name="data" Height="320" Width="430" HorizontalAlignment="Stretch" ItemsSource="{Binding teams}" Margin="10">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>

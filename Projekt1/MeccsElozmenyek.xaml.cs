@@ -219,7 +219,7 @@ namespace Projekt1
                 if (x.Value == mostWins)
                 {
                     mostWinsLabel.Content = "";
-                    mostWinsLabel.Content += $"{x.Key} ({x.Value})" ; //ha holtverseny lenne az összeset írja ki
+                    mostWinsLabel.Content += $"{x.Key} ({x.Value})" ;
                 }
             });
             Losestat.ToList().ForEach(x =>
@@ -227,7 +227,7 @@ namespace Projekt1
                 if (x.Value == mostLoses)
                 {
                     mostLosesLabel.Content = "";
-                    mostLosesLabel.Content += $"{x.Key} ({x.Value}) "; //ha holtverseny lenne az összeset írja ki
+                    mostLosesLabel.Content += $"{x.Key} ({x.Value}) ";
                 }
             });
         }
